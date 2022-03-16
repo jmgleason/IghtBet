@@ -1,24 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 import Colors from "../constants/Colors";
 
 const BetCardDisplay = props => {
   return (
-    <View style={styles.betCard}>
-      <View style={styles.header}>
-        <View style={styles.titleView}>
-          <Text style={styles.titleText}>{props.title}</Text>
+    <TouchableOpacity onPress={props.onViewBetDetails}>
+      <View style={styles.betCard}>
+        <View style={styles.header}>
+          <View style={styles.titleView}>
+            <Text style={styles.titleText}>{props.title}</Text>
+          </View>
+          <View style={styles.wagerView}>
+            <Text style={styles.wagerText}>${props.wager}</Text>
+          </View>
         </View>
-        <View style={styles.wagerView}>
-          <Text style={styles.wagerText}>${props.wager}</Text>
+        <Text style={styles.description}>{props.description}</Text>
+        <View style={styles.actions}>
+          <Button color={Colors.primary} title="Accept Bet" onPress={props.onAcceptBet} />
+          <Button color={Colors.primary} title="View Details" onPress={props.onViewBetDetails} />
         </View>
       </View>
-      <Text style={styles.description}>{props.description}</Text>
-      <View style={styles.actions}>
-        <Button color={Colors.primary} title="Accept Bet" onPress={props.onAcceptBet} />
-        <Button color={Colors.primary} title="View Details" onPress={props.onViewBetDetails} />
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

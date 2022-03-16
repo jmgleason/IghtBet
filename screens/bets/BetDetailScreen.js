@@ -7,9 +7,9 @@ const BetDetailScreen = props => {
   const selectedBet = useSelector(state => state.bets.allBets.find(prod => prod.id == betId));
 
   return (
-    <View>
+    <ScrollView>
       <Text>Bet Title: {selectedBet.title}</Text>
-    </View>
+    </ScrollView>
   );
 };
 
