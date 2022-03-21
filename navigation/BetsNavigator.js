@@ -28,9 +28,9 @@ function BetsNavigator() {
       <Stack.Screen
         name="BetDetail"
         component={BetDetailScreen}
-        options={({route}) => ({
-          title: route.params.betTitle
-        })}
+        options={{
+          title: "View Bet"
+        }}
       />
     </Stack.Navigator>
   )

@@ -10,7 +10,7 @@ const BETS = [
     "I bet the winner of the superbowl will be the Chargers",
     "50.00",
     "2021-03-01",
-    true
+    1
   ),
   new Bet(
     2,
@@ -21,7 +21,7 @@ const BETS = [
     "I bet I can do more push ups than Brian",
     "20.00",
     "2021-04-10",
-    true
+    0
   ),
   new Bet(
     3,
@@ -32,7 +32,7 @@ const BETS = [
     "I bet that Michael is gay",
     "10.00",
     "2021-03-21",
-    false
+    0
   ),
   new Bet(
     4,
@@ -43,7 +43,7 @@ const BETS = [
     "I bet Michael can take more dabs that Apoorv",
     "35.00",
     "2021-03-15",
-    true
+    0
   ),
   new Bet(
     5,
@@ -54,7 +54,7 @@ const BETS = [
     "I bet I can jump higher than Apoorv and this is also a really long description describing the fact that I can, indeed, jump higher than Apoorv and that's a fact because I am right",
     "100.00",
     "2021-04-03",
-    false
+    2
   )
 ];
 

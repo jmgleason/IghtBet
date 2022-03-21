@@ -15,12 +15,12 @@ const MyBetsScreen = props => {
           title={itemData.item.title}
           wager={itemData.item.wager}
           description={itemData.item.description}
+          statusCd={itemData.item.statusCd}
           onViewBetDetails={() => {
             props.navigation.navigate(
               'BetDetail',
               {
-                betId: itemData.item.id,
-                betTitle: itemData.item.title
+                betId: itemData.item.id
               }
           );
           }}

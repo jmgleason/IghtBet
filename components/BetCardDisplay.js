@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+
+import Tag from "./Tag";
 import Colors from "../constants/Colors";
+import betHelper from "../utils/betHelper";
 
 const BetCardDisplay = props => {
   return (
@@ -16,8 +19,12 @@ const BetCardDisplay = props => {
         </View>
         <Text style={styles.description}>{props.description}</Text>
         <View style={styles.actions}>
-          <Button color={Colors.primary} title="Accept Bet" onPress={props.onAcceptBet} />
-          <Button color={Colors.primary} title="View Details" onPress={props.onViewBetDetails} />
+          <Button color='black' title="Accept Bet" onPress={props.onAcceptBet} />
+          <Tag
+            color={betHelper.getBetStateColor(props.statusCd)}
+            tagText={betHelper.getBetStateText(props.statusCd)}
+            icon={betHelper.getBetIcon(props.statusCd)}
+          />
         </View>
       </View>
     </TouchableOpacity>
