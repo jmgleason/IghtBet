@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import Tag from "./Tag";
+import Button from "./Button";
 import Colors from "../constants/Colors";
 import betHelper from "../utils/betHelper";
 
@@ -19,7 +20,12 @@ const BetCardDisplay = props => {
         </View>
         <Text style={styles.description}>{props.description}</Text>
         <View style={styles.actions}>
-          <Button color='black' title="Accept Bet" onPress={props.onAcceptBet} />
+          <Button
+            buttonText="Accept Bet"
+            buttonColor={Colors.accepted}
+            styling={styles.actionButtonStyling}
+            onButtonPress={() => {}}
+          />
           <Tag
             color={betHelper.getBetStateColor(props.statusCd)}
             tagText={betHelper.getBetStateText(props.statusCd)}
@@ -69,6 +75,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
+  },
+  actionButtonStyling: {
+    paddingHorizontal: 10,
+    paddingVertical: 8
   }
 });
 

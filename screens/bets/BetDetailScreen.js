@@ -1,7 +1,8 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
+import Button from '../../components/Button';
 import Colors from '../../constants/Colors';
 import dateTimeHelper from '../../utils/dateTimeHelper';
 
@@ -27,12 +28,8 @@ const BetDetailScreen = props => {
           </View>
         </View>
 
-        <TouchableOpacity style={{...styles.button, ...styles.acceptButton}} onPress={() => {}}>
-          <Text style={styles.buttonText}>Accept Bet</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{...styles.button, ...styles.declineButton}} onPress={() => {}}>
-          <Text style={styles.buttonText}>Decline Bet</Text>
-        </TouchableOpacity>
+        <Button buttonText="Accept Bet" buttonColor={Colors.accepted} onButtonPress={() => {}} />
+        <Button buttonText="Decline Bet" buttonColor={Colors.declined} onButtonPress={() => {}} />
       </View>
     </ScrollView>
   );
@@ -66,22 +63,6 @@ const styles = StyleSheet.create({
   labelText: {
     fontSize: 20,
     fontWeight: 'bold'
-  },
-  button: {
-    borderRadius: 5,
-    alignItems: 'center',
-    paddingVertical: 10,
-    marginVertical: 5
-  },
-  acceptButton: {
-    backgroundColor: Colors.accepted
-  },
-  declineButton: {
-    backgroundColor: Colors.declined
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18
   }
 });
 
