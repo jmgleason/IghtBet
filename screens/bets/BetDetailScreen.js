@@ -1,30 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Button from '../../components/Button';
 import Colors from '../../constants/Colors';
 import dateTimeHelper from '../../utils/dateTimeHelper';
+import { fetchBet } from '../../utils/http';
 
 const BetDetailScreen = props => {
   const betId = props.route.params.betId;
-  const selectedBet = useSelector(state => state.bets.allBets.find(prod => prod.id == betId));
+  const betTitle = props.route.params.betTitle;
+  const betDescription = props.route.params.betDescription;
+  const betWager = props.route.params.betWager;
+  const betExpirationDate = props.route.params.betExpirationDate;
 
   return (
     <ScrollView>
       <View style={styles.mainView}>
         <View style={styles.detailSection}>
-          <Text style={styles.title}>{selectedBet.title}</Text>
-          <Text style={styles.descriptionText}>{selectedBet.description}</Text>
+          <Text style={styles.title}>{betTitle}</Text>
+          <Text style={styles.descriptionText}>{betDescription}</Text>
 
           <View style={styles.labelSection}>
             <Text style={styles.labelText}>Wager:</Text>
-            <Text style={styles.labelText}>${selectedBet.wager}</Text>
+            <Text style={styles.labelText}>${betWager}</Text>
           </View>
 
           <View style={styles.labelSection}>
             <Text style={styles.labelText}>Expires:</Text>
-            <Text style={styles.labelText}>{dateTimeHelper.getStandardDate(selectedBet.expirationDate)}</Text>
+            <Text style={styles.labelText}>{dateTimeHelper.getStandardDate(new Date(betExpirationDate))}</Text>
           </View>
         </View>
 

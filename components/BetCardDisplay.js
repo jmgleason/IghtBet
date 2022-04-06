@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   actionButtonStyling: {
     paddingHorizontal: 10,
-    paddingVertical: 8
+    paddingVertical: 5
   }
 });
 
