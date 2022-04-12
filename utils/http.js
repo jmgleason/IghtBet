@@ -15,8 +15,6 @@ export async function fetchAllBets() {
   );
 
   const bets = [];
-  console.log(response.data);
-
   for (const key in response.data) {
     const betObj = {
       id: key,
@@ -32,7 +30,6 @@ export async function fetchAllBets() {
     bets.push(betObj);
   }
 
-  console.log(bets);
   return bets;
 }
 

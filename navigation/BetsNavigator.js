@@ -1,16 +1,60 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Platform } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../constants/Colors';
 
 import MyBetsScreen from '../screens/user/MyBetsScreen';
+import ActiveBetsScreen from '../screens/user/ActiveBetsScreen';
 import BetDetailScreen from '../screens/bets/BetDetailScreen';
+import ManageBetScreen from '../screens/bets/ManageBetScreen';
+import SettledBetsScreen from '../screens/user/SettledBetsScreen';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
+const BottomTabs = createBottomTabNavigator();
+
+function BetsOverview() {
+  return (
+    <BottomTabs.Navigator
+      screenOptions={{
+        headerRight: () => {}
+      }}
+    >
+      <BottomTabs.Screen
+        name="MyBets"
+        component={MyBetsScreen}
+        options={{
+          title: "All Bets",
+          tabBarLabel: "All",
+          tabBarIcon: ({color, size}) => <Icon name="th-list" size={size} color={color} />
+        }}
+      />
+      <BottomTabs.Screen
+        name="ActiveBets"
+        component={ActiveBetsScreen}
+        options={{
+          title: "Active Bets",
+          tabBarLabel: "Active",
+          tabBarIcon: ({color, size}) => <Icon name="spinner" size={size} color={color} />
+        }}
+      />
+      <BottomTabs.Screen
+        name="SettledBets"
+        component={SettledBetsScreen}
+        options={{
+          title: "Settled Bets",
+          tabBarLabel: "Settled",
+            tabBarIcon: ({color, size}) => <Icon name="flag-checkered" size={size} color={color} />
+        }}
+      />
+    </BottomTabs.Navigator>
+  );
+}
 
 function BetsNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="MyBets"
+      initialRouteName="BetsOverview"
       screenOptions={{
         headerStyle: {
           backgroundColor: Platform.OS == 'android' ? Colors.primary : ''
@@ -19,10 +63,11 @@ function BetsNavigator() {
       }}
     >
       <Stack.Screen
-        name="MyBets"
-        component={MyBetsScreen}
+        name="BetsOverview"
+        component={BetsOverview}
         options={{
-          title: "My Bets"
+          title: "My Bets",
+          headerShown: false
         }}
       />
       <Stack.Screen
@@ -30,6 +75,13 @@ function BetsNavigator() {
         component={BetDetailScreen}
         options={{
           title: "View Bet"
+        }}
+      />
+      <Stack.Screen
+        name="ManageBet"
+        component={ManageBetScreen}
+        options={{
+          title: "Edit Bet"
         }}
       />
     </Stack.Navigator>

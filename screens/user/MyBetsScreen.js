@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text } from 'react-native';
-import { useSelector } from 'react-redux';
 
-import BetCardDisplay from '../../components/BetCardDisplay';
-import { fetchAllBets, addBet } from '../../utils/http';
+import BetsList from '../../components/BetsList';
+import { fetchAllBets } from '../../utils/http';
 
 const MyBetsScreen = props => {
   // This is grabbing the bets directly from the dummy data, which is set in state
@@ -21,30 +19,7 @@ const MyBetsScreen = props => {
   }, []);
 
   return (
-    <FlatList
-      data={fetchedBets}
-      keyExtractor={item => item.id}
-      renderItem={itemData => (
-        <BetCardDisplay
-          title={itemData.item.title}
-          wager={itemData.item.wager}
-          description={itemData.item.description}
-          statusCd={itemData.item.statusCd}
-          onViewBetDetails={() => {
-            props.navigation.navigate(
-              'BetDetail',
-              {
-                betId: itemData.item.id,
-                betTitle: itemData.item.title,
-                betDescription: itemData.item.description,
-                betWager: itemData.item.wager,
-                betExpirationDate: itemData.item.expirationDate.toString()
-              }
-          );}}
-          onAcceptBet={() => {}}
-        />
-      )}
-    />
+    <BetsList bets={fetchedBets} />
   );
 };
 
