@@ -4,11 +4,12 @@ import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../constants/Colors';
 
-import MyBetsScreen from '../screens/user/MyBetsScreen';
+import AllBetsScreen from '../screens/user/AllBetsScreen';
 import ActiveBetsScreen from '../screens/user/ActiveBetsScreen';
 import BetDetailScreen from '../screens/bets/BetDetailScreen';
 import ManageBetScreen from '../screens/bets/ManageBetScreen';
 import SettledBetsScreen from '../screens/user/SettledBetsScreen';
+import IconButton from '../components/IconButton';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -16,13 +17,22 @@ const BottomTabs = createBottomTabNavigator();
 function BetsOverview() {
   return (
     <BottomTabs.Navigator
-      screenOptions={{
-        headerRight: () => {}
-      }}
+      screenOptions={({navigation}) => ({
+        headerRight: ({tintColor}) => (
+          <IconButton
+            iconName="plus"
+            size={24}
+            color={tintColor}
+            onPress={() => {
+              navigation.navigate('ManageBet');
+            }}
+          />
+        )
+      })}
     >
       <BottomTabs.Screen
-        name="MyBets"
-        component={MyBetsScreen}
+        name="AllBets"
+        component={AllBetsScreen}
         options={{
           title: "All Bets",
           tabBarLabel: "All",
@@ -81,7 +91,7 @@ function BetsNavigator() {
         name="ManageBet"
         component={ManageBetScreen}
         options={{
-          title: "Edit Bet"
+          title: "New Bet"
         }}
       />
     </Stack.Navigator>

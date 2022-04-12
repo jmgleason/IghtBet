@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -13,6 +12,12 @@ const BetDetailScreen = props => {
   const betDescription = props.route.params.betDescription;
   const betWager = props.route.params.betWager;
   const betExpirationDate = props.route.params.betExpirationDate;
+
+  function onEditBetHandler() {
+    props.navigation.navigate(
+      'ManageBet'
+    );
+  }
 
   return (
     <ScrollView>
@@ -34,6 +39,7 @@ const BetDetailScreen = props => {
 
         <Button buttonText="Accept Bet" buttonColor={Colors.accepted} onButtonPress={() => {}} />
         <Button buttonText="Decline Bet" buttonColor={Colors.declined} onButtonPress={() => {}} />
+        <Button buttonText="Edit Bet" buttonColor={Colors.defaultButtonColor} onButtonPress={onEditBetHandler} />
       </View>
     </ScrollView>
   );

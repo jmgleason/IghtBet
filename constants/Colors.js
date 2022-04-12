@@ -3,5 +3,6 @@ export default {
   accent: '#03adfc',
   accepted: 'green',
   pending: '#a3a3a3',
-  declined: 'red'
+  declined: 'red',
+  defaultButtonColor: 'black'
 };
