@@ -6,18 +6,18 @@ import { fetchAllBets } from '../../utils/http';
 
 const AllBetsScreen = props => {
   // This is grabbing the bets directly from the dummy data, which is set in state
-  //const fetchedBets = useSelector(state => state.bets.userBets);
+  const fetchedBets = useSelector(state => state.bets.userBets);
 
-  const [fetchedBets, setFetchedBets] = useState([]);
+  //const [fetchedBets, setFetchedBets] = useState([]);
 
-  useEffect(() => {
-    async function getBets() {
-      const bets = await fetchAllBets();
-      setFetchedBets(bets);
-    };
+  //useEffect(() => {
+  //  async function getBets() {
+  //    const bets = await fetchAllBets();
+  //    setFetchedBets(bets);
+  //  };
 
-    getBets();
-  }, []);
+  //  getBets();
+  //}, []);
 
   return (
     <BetsList bets={fetchedBets} />

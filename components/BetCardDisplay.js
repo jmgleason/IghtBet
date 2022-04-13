@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import Tag from "./Tag";
 import Colors from "../constants/Colors";
 import betHelper from "../utils/betHelper";
+import currencyHelper from "../utils/currencyHelper";
 
 function BetCardDisplay({id, title, wager, description, statusCd, expirationDate}) {
   const navigation = useNavigation();
@@ -30,7 +31,7 @@ function BetCardDisplay({id, title, wager, description, statusCd, expirationDate
         <Text style={styles.description}>{description}</Text>
         <View style={styles.actions}>
           <View>
-            <Text style={styles.wagerText}>${wager}</Text>
+            <Text style={styles.wagerText}>{currencyHelper.penniesToFormattedDollars(wager)}</Text>
           </View>
           <Tag
             color={betHelper.getBetStateColor(statusCd)}
