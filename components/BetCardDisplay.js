@@ -17,7 +17,7 @@ function BetCardDisplay({id, title, wager, description, statusCd, expirationDate
         betTitle: title,
         betWager: wager,
         betDescription: description,
-        betExpirationDate: expirationDate
+        betExpirationDate: expirationDate.toString()
       }
     );
   }

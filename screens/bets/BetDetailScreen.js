@@ -7,15 +7,12 @@ import dateTimeHelper from '../../utils/dateTimeHelper';
 import { fetchBet } from '../../utils/http';
 
 const BetDetailScreen = props => {
-  const betId = props.route.params.betId;
-  const betTitle = props.route.params.betTitle;
-  const betDescription = props.route.params.betDescription;
-  const betWager = props.route.params.betWager;
-  const betExpirationDate = props.route.params.betExpirationDate;
-
   function onEditBetHandler() {
     props.navigation.navigate(
-      'ManageBet'
+      'ManageBet',
+      {
+        betId: props.route.params.betId
+      }
     );
   }
 
@@ -23,17 +20,17 @@ const BetDetailScreen = props => {
     <ScrollView>
       <View style={styles.mainView}>
         <View style={styles.detailSection}>
-          <Text style={styles.title}>{betTitle}</Text>
-          <Text style={styles.descriptionText}>{betDescription}</Text>
+          <Text style={styles.title}>{props.route.params.betTitle}</Text>
+          <Text style={styles.descriptionText}>{props.route.params.betDescription}</Text>
 
           <View style={styles.labelSection}>
             <Text style={styles.labelText}>Wager:</Text>
-            <Text style={styles.labelText}>${betWager}</Text>
+            <Text style={styles.labelText}>${props.route.params.betWager}</Text>
           </View>
 
           <View style={styles.labelSection}>
             <Text style={styles.labelText}>Expires:</Text>
-            <Text style={styles.labelText}>{dateTimeHelper.getStandardDate(new Date(betExpirationDate))}</Text>
+            <Text style={styles.labelText}>{dateTimeHelper.getStandardDate(new Date(props.route.params.betExpirationDate))}</Text>
           </View>
         </View>
 

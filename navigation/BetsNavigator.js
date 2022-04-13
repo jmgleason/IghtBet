@@ -4,11 +4,11 @@ import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../constants/Colors';
 
-import AllBetsScreen from '../screens/user/AllBetsScreen';
-import ActiveBetsScreen from '../screens/user/ActiveBetsScreen';
+import AllBetsScreen from '../screens/bets/AllBetsScreen';
+import ActiveBetsScreen from '../screens/bets/ActiveBetsScreen';
+import SettledBetsScreen from '../screens/bets/SettledBetsScreen';
 import BetDetailScreen from '../screens/bets/BetDetailScreen';
 import ManageBetScreen from '../screens/bets/ManageBetScreen';
-import SettledBetsScreen from '../screens/user/SettledBetsScreen';
 import IconButton from '../components/IconButton';
 
 const Stack = createNativeStackNavigator();
@@ -91,7 +91,7 @@ function BetsNavigator() {
         name="ManageBet"
         component={ManageBetScreen}
         options={{
-          title: "New Bet"
+          presentation: 'modal'
         }}
       />
     </Stack.Navigator>
