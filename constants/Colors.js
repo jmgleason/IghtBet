@@ -4,5 +4,6 @@ export default {
   accepted: 'green',
   pending: '#a3a3a3',
   declined: 'red',
+  lightGray: '#d3d3d3',
   defaultButtonColor: 'black'
 };
