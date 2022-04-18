@@ -7,6 +7,14 @@ import dateTimeHelper from '../../utils/dateTimeHelper';
 import { fetchBet } from '../../utils/http';
 
 const BetDetailScreen = props => {
+  function onAcceptBetHandler() {
+
+  }
+
+  function onDeclineBetHandler() {
+
+  }
+
   function onEditBetHandler() {
     props.navigation.navigate(
       'ManageBet',
@@ -34,9 +42,9 @@ const BetDetailScreen = props => {
           </View>
         </View>
 
-        <Button buttonText="Accept Bet" buttonColor={Colors.accepted} onButtonPress={() => {}} />
-        <Button buttonText="Decline Bet" buttonColor={Colors.declined} onButtonPress={() => {}} />
-        <Button buttonText="Edit Bet" buttonColor={Colors.defaultButtonColor} onButtonPress={onEditBetHandler} />
+        <Button color={Colors.accepted} onPress={onAcceptBetHandler}>Accept Bet</Button>
+        <Button color={Colors.declined} onPress={onDeclineBetHandler}>Decline Bet</Button>
+        <Button color={Colors.defaultButtonColor} onPress={onEditBetHandler}>Edit Bet</Button>
       </View>
     </ScrollView>
   );

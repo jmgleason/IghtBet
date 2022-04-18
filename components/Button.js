@@ -1,24 +1,35 @@
-import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { Pressable, View, Text, StyleSheet } from "react-native";
+import Colors from "../constants/Colors";
 
-const Button = props => {
+function Button({children, onPress, color, style}) {
   return (
-    <TouchableOpacity style={{...styles.button, ...props.styling, backgroundColor: props.buttonColor}} onPress={props.onButtonPress}>
-      <Text style={styles.buttonText}>{props.buttonText}</Text>
-    </TouchableOpacity>
+    <View style={style}>
+      <Pressable onPress={onPress} style={({pressed}) => pressed && styles.pressed}>
+        <View style={{...styles.button, backgroundColor: color}}>
+          <Text style={styles.buttonText}>{children}</Text>
+        </View>
+      </Pressable>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 5,
-    alignItems: 'center',
-    paddingVertical: 10,
-    marginVertical: 5
+    borderRadius: 4,
+    padding: 15,
+    marginVertical: 5,
+    backgroundColor: Colors.lightGray
+  },
+  flat: {
+    backgroundColor: 'transparent'
   },
   buttonText: {
     color: 'white',
-    fontSize: 18
+    textAlign: 'center'
+  },
+  pressed: {
+    opacity: 0.7,
+    borderRadius: 4
   }
 });
 
