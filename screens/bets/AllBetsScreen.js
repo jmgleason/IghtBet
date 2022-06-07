@@ -6,7 +6,7 @@ import { fetchAllBets } from '../../utils/http';
 
 const AllBetsScreen = props => {
   // This is grabbing the bets directly from the dummy data, which is set in state
-  const fetchedBets = useSelector((state) => state.bets.userBets.filter(bet => bet.ownerId == 1));
+  const fetchedBets = useSelector((state) => state.bets.allBets.filter(bet => bet.ownerId == 1));
 
   //const [fetchedBets, setFetchedBets] = useState([]);
 
