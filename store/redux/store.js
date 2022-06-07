@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import allBetsReducer from './allBets';
+import betsReducer from './bets';
 
 export const store = configureStore({
   reducer: {
-    allBets: allBetsReducer
+    bets: betsReducer
   }
 });

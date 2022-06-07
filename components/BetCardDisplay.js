@@ -6,18 +6,14 @@ import Colors from "../constants/Colors";
 import betHelper from "../utils/betHelper";
 import currencyHelper from "../utils/currencyHelper";
 
-function BetCardDisplay({id, title, wager, description, statusCd, expirationDate}) {
+function BetCardDisplay({id, title, wager, description, statusCd}) {
   const navigation = useNavigation();
 
   function betPressHandler() {
     navigation.navigate(
       'BetDetail',
       {
-        betId: id,
-        betTitle: title,
-        betWager: wager,
-        betDescription: description,
-        betExpirationDate: expirationDate.toString()
+        betId: id
       }
     );
   }
