@@ -5,7 +5,6 @@ import Button from '../../components/Button';
 import Colors from '../../constants/Colors';
 import dateTimeHelper from '../../utils/dateTimeHelper';
 import currencyHelper from '../../utils/currencyHelper';
-import { deleteBet } from '../../store/redux/bets';
 
 const BetDetailScreen = props => {
   const betId = props.route.params.betId;
@@ -29,11 +28,6 @@ const BetDetailScreen = props => {
     );
   }
 
-  function onDeleteBetHandler() {
-    dispatch(deleteBet({id: bet.id}));
-    props.navigation.navigate('AllBets');
-  }
-
   return (
     <ScrollView>
       <View style={styles.mainView}>
@@ -55,7 +49,6 @@ const BetDetailScreen = props => {
         <Button color={Colors.accepted} onPress={onAcceptBetHandler}>Accept Bet</Button>
         <Button color={Colors.declined} onPress={onDeclineBetHandler}>Decline Bet</Button>
         <Button color={Colors.defaultButtonColor} onPress={onEditBetHandler}>Edit Bet</Button>
-        <Button color={Colors.defaultButtonColor} onPress={onDeleteBetHandler}>Delete Bet</Button>
       </View>
     </ScrollView>
   );

@@ -1,12 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { useLayoutEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import Colors from '../../constants/Colors';
 import IconButton from '../../components/IconButton';
 import Button from '../../components/Button';
+import { deleteBet } from '../../store/redux/bets';
 
 function ManageBetScreen({route, navigation}) {
+  const dispatch = useDispatch();
+
   const betId = route.params?.betId;
   const isEditing = !!betId;
 
@@ -17,7 +21,8 @@ function ManageBetScreen({route, navigation}) {
   }, [navigation, isEditing]);
 
   function deleteBetHandler() {
-    navigation.goBack();
+    dispatch(deleteBet({id: betId}));
+    navigation.navigate('AllBets');
   };
 
   function cancelHandler() {
