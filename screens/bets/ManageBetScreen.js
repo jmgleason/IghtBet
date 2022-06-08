@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import Colors from '../../constants/Colors';
 import IconButton from '../../components/IconButton';
 import Button from '../../components/Button';
-import { deleteBet } from '../../store/redux/bets';
+import { deleteBet, addBet } from '../../store/redux/bets';
 
 function ManageBetScreen({route, navigation}) {
   const dispatch = useDispatch();
@@ -30,7 +30,12 @@ function ManageBetScreen({route, navigation}) {
   };
 
   function confirmHandler() {
-    navigation.goBack();
+    if (isEditing) {
+      navigation.goBack();
+    } else {
+      dispatch(addBet());
+      navigation.navigate('AllBets');
+    }
   }
 
   return (

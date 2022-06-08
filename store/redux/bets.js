@@ -21,7 +21,7 @@ const betSlice = createSlice({
         "2021-06-08",
         1
       )
-      state.bets.push(newBet);
+      state.allBets.push(newBet);
     },
     deleteBet: (state, action) => {
       state.allBets = state.allBets.filter((bet) => bet.id != action.payload.id);
