@@ -33,11 +33,11 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
     },
   });
 
-  function inputChangedHandler(inputId, enteredValue) {
+  function inputChangedHandler(inputValue, enteredValue) {
     setInputs((currentInputs) => {
       return {
         ...currentInputs,
-        [inputId]: { value: enteredValue, isValid: true },
+        [inputValue]: { value: enteredValue, isValid: true },
       };
     });
   }
@@ -106,6 +106,7 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
     <View style={styles.form}>
       <Input
         label="Title"
+        invalid={!inputs.title.isValid}
         textInputConfig={{
           onChangeText: inputChangedHandler.bind(this, "title"),
           value: inputs.title.value,
@@ -113,6 +114,7 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       />
       <Input
         label="Description"
+        invalid={!inputs.description.isValid}
         textInputConfig={{
           multiline: true,
           onChangeText: inputChangedHandler.bind(this, "description"),
@@ -121,6 +123,7 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       />
       <Input
         label="Who are you betting?"
+        invalid={!inputs.receivingOwner.isValid}
         textInputConfig={{
           onChangeText: inputChangedHandler.bind(this, "receivingOwner"),
           value: inputs.receivingOwner.value,
@@ -129,6 +132,7 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       <View style={styles.inputsRow}>
         <Input
           label="Wager"
+          invalid={!inputs.wager.isValid}
           style={styles.rowInput}
           textInputConfig={{
             keyboardType: "decimal-pad",
@@ -138,6 +142,7 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         />
         <Input
           label="When will this bet settle?"
+          invalid={!inputs.settleDate.isValid}
           style={styles.rowInput}
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
@@ -149,7 +154,9 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       </View>
 
       {formIsInvalid && (
-        <Text>Invalid input values. Please check your entered data.</Text>
+        <Text style={styles.errorText}>
+          Invalid input values. Please check the fields above.
+        </Text>
       )}
 
       <View style={styles.buttonContainer}>
@@ -187,6 +194,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+  errorText: {
+    textAlign: "center",
+    margin: 8,
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: "red",
+    backgroundColor: "#ffd6da",
   },
 });
 
