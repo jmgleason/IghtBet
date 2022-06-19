@@ -26,7 +26,7 @@ const betSlice = createSlice({
     updateBet: (state, action) => {
       state.allBets.map((bet) => {
         if (bet.id == action.payload.id) {
-          bet.receivingOwnerIds = action.payload.receivingOwner;
+          bet.receivingOwnerId = action.payload.receivingOwner;
           bet.title = action.payload.title;
           bet.description = action.payload.description;
           bet.wager = action.payload.wager;

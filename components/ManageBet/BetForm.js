@@ -18,7 +18,7 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       isValid: true,
     },
     receivingOwner: {
-      value: defaultValues ? defaultValues.receivingOwnerIds.toString() : "",
+      value: defaultValues ? defaultValues.receivingOwnerId.toString() : "",
       isValid: true,
     },
     wager: {
@@ -198,6 +198,7 @@ const styles = StyleSheet.create({
   errorText: {
     textAlign: "center",
     margin: 8,
+    padding: 3,
     borderWidth: 2,
     borderRadius: 5,
     borderColor: "red",

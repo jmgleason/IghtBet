@@ -2,7 +2,7 @@ class Bet {
   constructor(
     id,
     ownerId,
-    receivingOwnerIds,
+    receivingOwnerId,
     title,
     imageUrl,
     description,
@@ -12,7 +12,7 @@ class Bet {
   ) {
     this.id = id;
     this.ownerId = ownerId;
-    this.receivingOwnerIds = receivingOwnerIds;
+    this.receivingOwnerId = receivingOwnerId;
     this.title = title;
     this.imageUrl = imageUrl;
     this.description = description;

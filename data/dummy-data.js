@@ -4,7 +4,7 @@ const BETS = [
   new Bet(
     1,
     1,
-    [2],
+    2,
     "Superbowl Game",
     "",
     "I bet the winner of the superbowl will be the Chargers",
@@ -15,7 +15,7 @@ const BETS = [
   new Bet(
     2,
     1,
-    [4],
+    4,
     "Push Ups",
     "",
     "I bet I can do more push ups than Brian",
@@ -26,7 +26,7 @@ const BETS = [
   new Bet(
     3,
     1,
-    [5],
+    5,
     "Gay",
     "",
     "I bet that Michael is gay",
@@ -37,7 +37,7 @@ const BETS = [
   new Bet(
     4,
     2,
-    [3, 4, 5],
+    3,
     "Smoked Out",
     "",
     "I bet Michael can take more dabs that Apoorv",
@@ -48,7 +48,7 @@ const BETS = [
   new Bet(
     5,
     1,
-    [2, 3],
+    2,
     "I can jump higher than Apoorv and this is a really long title that will never end",
     "",
     "I bet I can jump higher than Apoorv and this is also a really long description describing the fact that I can, indeed, jump higher than Apoorv and that's a fact because I am right",
