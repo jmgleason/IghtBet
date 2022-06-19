@@ -1,14 +1,19 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import Colors from "../../constants/Colors";
 import IconButton from "../../components/IconButton";
+import LoadingOverlay from "../../components/UI/LoadingOverlay";
+import ErrorOverlay from "../../components/UI/ErrorOverlay";
 import BetForm from "../../components/ManageBet/BetForm";
 import { addBet, updateBet, deleteBet } from "../../store/redux/bets";
+import { axiosAddBet, axiosUpdateBet, axiosDeleteBet } from "../../utils/http";
 
 function ManageBetScreen({ route, navigation }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState();
   const dispatch = useDispatch();
 
   const betId = route.params?.betId;
@@ -23,23 +28,53 @@ function ManageBetScreen({ route, navigation }) {
     });
   }, [navigation, isEditing]);
 
-  function deleteBetHandler() {
-    dispatch(deleteBet({ id: betId }));
-    navigation.navigate("AllBets");
+  async function deleteBetHandler() {
+    setIsSubmitting(true);
+
+    try {
+      await axiosDeleteBet(betId);
+      dispatch(deleteBet({ id: betId }));
+      navigation.navigate("AllBets");
+    } catch (error) {
+      setError("Could not delete bet.  Please try again.");
+      setIsSubmitting(false);
+    }
   }
 
   function cancelHandler() {
     navigation.goBack();
   }
 
-  function submitHandler(betData) {
-    if (isEditing) {
-      dispatch(updateBet(betData));
-      navigation.goBack();
-    } else {
-      dispatch(addBet(betData));
-      navigation.navigate("AllBets");
+  async function submitHandler(betData) {
+    setIsSubmitting(true);
+
+    try {
+      if (isEditing) {
+        await axiosUpdateBet(betId, betData);
+        dispatch(updateBet({ id: betId, data: betData }));
+        navigation.goBack();
+      } else {
+        const id = await axiosAddBet(betData);
+        dispatch(addBet({ ...betData, id: id }));
+
+        navigation.navigate("AllBets");
+      }
+    } catch (error) {
+      setError("Could not save bet.  Please try again");
+      isSubmitting(false);
     }
+  }
+
+  function errorHandler() {
+    setError(null);
+  }
+
+  if (error && !isSubmitting) {
+    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
+  }
+
+  if (isSubmitting) {
+    return <LoadingOverlay />;
   }
 
   return (

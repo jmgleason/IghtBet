@@ -8,7 +8,6 @@ import Input from "../Input";
 
 function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   const [inputs, setInputs] = useState({
-    id: { value: defaultValues ? defaultValues.id : "", isValid: true },
     title: {
       value: defaultValues ? defaultValues.title : "",
       isValid: true,
@@ -17,7 +16,7 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       value: defaultValues ? defaultValues.description : "",
       isValid: true,
     },
-    receivingOwner: {
+    receivingOwnerId: {
       value: defaultValues ? defaultValues.receivingOwnerId.toString() : "",
       isValid: true,
     },
@@ -44,29 +43,29 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
 
   function submitHandler() {
     const betData = {
-      id: inputs.id.value,
       title: inputs.title.value.trim(),
       description: inputs.description.value.trim(),
-      receivingOwner: +inputs.receivingOwner.value,
+      receivingOwnerId: +inputs.receivingOwnerId.value,
       wager: +inputs.wager.value * 100,
       settleDate: new Date(inputs.settleDate.value),
+      ownerId: 1,
+      statusCd: 0,
     };
 
     // Validation
     const titleIsValid = betData.title.length > 0;
-    const receivingOwnerIsValid = betData.receivingOwner > 0;
+    const receivingOwnerIdIsValid = betData.receivingOwnerId > 0;
     const wagerIsValid = !isNaN(betData.wager) && betData.wager > 0;
     const settleDateIsValid = betData.settleDate.toString() !== "Invalid Date";
 
     if (
       !titleIsValid ||
-      !receivingOwnerIsValid ||
+      !receivingOwnerIdIsValid ||
       !wagerIsValid ||
       !settleDateIsValid
     ) {
       setInputs((currentInputs) => {
         return {
-          id: { value: currentInputs.id.value, isValid: true },
           title: {
             value: currentInputs.title.value,
             isValid: titleIsValid,
@@ -75,9 +74,9 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
             value: currentInputs.description.value,
             isValid: currentInputs.description.isValid,
           },
-          receivingOwner: {
-            value: currentInputs.receivingOwner.value,
-            isValid: receivingOwnerIsValid,
+          receivingOwnerId: {
+            value: currentInputs.receivingOwnerId.value,
+            isValid: receivingOwnerIdIsValid,
           },
           wager: {
             value: currentInputs.wager.value,
@@ -98,7 +97,7 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
 
   const formIsInvalid =
     !inputs.title.isValid ||
-    !inputs.receivingOwner.isValid ||
+    !inputs.receivingOwnerId.isValid ||
     !inputs.wager.isValid ||
     !inputs.settleDate.isValid;
 
@@ -123,10 +122,10 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       />
       <Input
         label="Who are you betting?"
-        invalid={!inputs.receivingOwner.isValid}
+        invalid={!inputs.receivingOwnerId.isValid}
         textInputConfig={{
-          onChangeText: inputChangedHandler.bind(this, "receivingOwner"),
-          value: inputs.receivingOwner.value,
+          onChangeText: inputChangedHandler.bind(this, "receivingOwnerId"),
+          value: inputs.receivingOwnerId.value,
         }}
       />
       <View style={styles.inputsRow}>

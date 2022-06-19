@@ -1,24 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import BetsList from "../../components/BetsList";
-import { fetchAllBets } from "../../utils/http";
+import LoadingOverlay from "../../components/UI/LoadingOverlay";
+import ErrorOverlay from "../../components/UI/ErrorOverlay";
+import { setBets } from "../../store/redux/bets";
+import { axiosFetchAllBets } from "../../utils/http";
 
 const AllBetsScreen = (props) => {
-  // This is grabbing the bets directly from the dummy data, which is set in state
-  // const fetchedBets = useSelector((state) => state.bets.allBets.filter(bet => bet.ownerId == 1));
+  const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState();
+  const dispatch = useDispatch();
 
-  const [fetchedBets, setFetchedBets] = useState([]);
+  const fetchedBets = useSelector((state) =>
+    state.bets.allBets.filter((bet) => bet.ownerId == 1)
+  );
 
   useEffect(() => {
     async function getBets() {
-      const bets = await fetchAllBets();
-      setFetchedBets(bets);
-      console.log(bets);
+      setIsFetching(true);
+      try {
+        const bets = await axiosFetchAllBets();
+        dispatch(setBets(bets));
+      } catch (error) {
+        setError("Could not get Bets.");
+      }
+      setIsFetching(false);
     }
 
     getBets();
   }, []);
+
+  function errorHandler() {
+    setError(null);
+  }
+
+  if (error && !isFetching) {
+    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
+  }
+
+  if (isFetching) {
+    return <LoadingOverlay />;
+  }
 
   return <BetsList bets={fetchedBets} />;
 };

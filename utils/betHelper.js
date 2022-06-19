@@ -1,8 +1,8 @@
-import Colors from "../constants/Colors"
+import Colors from "../constants/Colors";
 
 const betHelper = {
   getBetStateColor: (status_cd) => {
-    switch(status_cd) {
+    switch (status_cd) {
       case 0:
         return Colors.pending;
       case 1:
@@ -14,7 +14,7 @@ const betHelper = {
     }
   },
   getBetStateText: (status_cd) => {
-    switch(status_cd) {
+    switch (status_cd) {
       case 0:
         return "Pending";
       case 1:
@@ -28,7 +28,7 @@ const betHelper = {
     }
   },
   getBetIcon: (status_cd) => {
-    switch(status_cd) {
+    switch (status_cd) {
       case 0:
         return "ellipsis-h";
       case 1:
@@ -39,7 +39,22 @@ const betHelper = {
       default:
         return "ellipsis-h";
     }
-  }
-}
+  },
+  isPending: (status_cd) => {
+    return status_cd == 0;
+  },
+  isAccepted: (status_cd) => {
+    return status_cd == 1;
+  },
+  isDeclined: (status_cd) => {
+    return status_cd == 2;
+  },
+  isExpired: (status_cd) => {
+    return status_cd == 3;
+  },
+  isSettled: (status_cd) => {
+    return status_cd == 4;
+  },
+};
 
 export default betHelper;

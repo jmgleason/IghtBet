@@ -1,38 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import Bet from "../../models/bet";
-import BETS from "../../data/dummy-data";
 
 const betSlice = createSlice({
   name: "bets",
   initialState: {
-    allBets: BETS,
+    allBets: [],
   },
   reducers: {
+    setBets: (state, action) => {
+      state.allBets = action.payload;
+    },
     addBet: (state, action) => {
-      var newBet = new Bet(
-        state.allBets.length + 1,
-        1,
-        action.payload.receivingOwner,
-        action.payload.title,
-        "",
-        action.payload.description,
-        action.payload.wager,
-        action.payload.settleDate,
-        0
-      );
+      var newBet = {
+        ...action.payload,
+        id: state.allBets.length + 1,
+      };
       state.allBets.push(newBet);
     },
     updateBet: (state, action) => {
-      state.allBets.map((bet) => {
-        if (bet.id == action.payload.id) {
-          bet.receivingOwnerId = action.payload.receivingOwner;
-          bet.title = action.payload.title;
-          bet.description = action.payload.description;
-          bet.wager = action.payload.wager;
-          bet.settleDate = action.payload.settleDate;
-        }
-      });
+      const updatableBetIndex = state.allBets.findIndex(
+        (bet) => bet.id == action.payload.id
+      );
+      const updatableBet = state.allBets[updatableBetIndex];
+      const updatedBet = { ...updatableBet, ...action.payload.data };
+
+      const updatedBets = [...state.allBets];
+      updatedBets[updatableBetIndex] = updatedBet;
+
+      state.allBets = updatedBets;
     },
     deleteBet: (state, action) => {
       state.allBets = state.allBets.filter(
@@ -42,6 +38,7 @@ const betSlice = createSlice({
   },
 });
 
+export const setBets = betSlice.actions.setBets;
 export const addBet = betSlice.actions.addBet;
 export const updateBet = betSlice.actions.updateBet;
 export const deleteBet = betSlice.actions.deleteBet;

@@ -2,11 +2,7 @@ import axios from "axios";
 
 FIREBASE_BASE_URL = "https://ight-bet-default-rtdb.firebaseio.com/";
 
-export function addBet(betData) {
-  axios.post(`${FIREBASE_BASE_URL}bets.json`, betData);
-}
-
-export async function fetchAllBets() {
+export async function axiosFetchAllBets() {
   const response = await axios.get(`${FIREBASE_BASE_URL}bets.json`);
 
   const bets = [];
@@ -26,6 +22,19 @@ export async function fetchAllBets() {
   }
 
   return bets;
+}
+
+export async function axiosAddBet(betData) {
+  const response = await axios.post(`${FIREBASE_BASE_URL}bets.json`, betData);
+  return response.data.name;
+}
+
+export function axiosUpdateBet(id, betData) {
+  return axios.put(`${FIREBASE_BASE_URL}bets/${id}.json`, betData);
+}
+
+export function axiosDeleteBet(id) {
+  return axios.delete(`${FIREBASE_BASE_URL}bets/${id}.json`);
 }
 
 export async function fetchBet(betId) {
