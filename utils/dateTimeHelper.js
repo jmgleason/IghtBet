@@ -1,9 +1,7 @@
-import moment from "moment";
-
 const dateTimeHelper = {
   getStandardDate: (date) => {
-    return moment(date, 'YYYY-MM-DD').format('MM/DD/YYYY');
-  }
+    return date.toISOString().slice(0, 10);
+  },
 };
 
 export default dateTimeHelper;

@@ -4,31 +4,45 @@ import Bet from "../../models/bet";
 import BETS from "../../data/dummy-data";
 
 const betSlice = createSlice({
-  name: 'bets',
+  name: "bets",
   initialState: {
-    allBets: BETS
+    allBets: BETS,
   },
   reducers: {
     addBet: (state, action) => {
       var newBet = new Bet(
-        100,
+        state.allBets.length + 1,
         1,
-        [2],
-        "Test Bet",
+        action.payload.receivingOwner,
+        action.payload.title,
         "",
-        "I bet this is a test",
-        "100",
-        "2021-06-08",
-        1
-      )
+        action.payload.description,
+        action.payload.wager,
+        action.payload.settleDate,
+        0
+      );
       state.allBets.push(newBet);
     },
+    updateBet: (state, action) => {
+      state.allBets.map((bet) => {
+        if (bet.id == action.payload.id) {
+          bet.receivingOwnerIds = action.payload.receivingOwner;
+          bet.title = action.payload.title;
+          bet.description = action.payload.description;
+          bet.wager = action.payload.wager;
+          bet.settleDate = action.payload.settleDate;
+        }
+      });
+    },
     deleteBet: (state, action) => {
-      state.allBets = state.allBets.filter((bet) => bet.id != action.payload.id);
-    }
-  }
+      state.allBets = state.allBets.filter(
+        (bet) => bet.id != action.payload.id
+      );
+    },
+  },
 });
 
 export const addBet = betSlice.actions.addBet;
+export const updateBet = betSlice.actions.updateBet;
 export const deleteBet = betSlice.actions.deleteBet;
 export default betSlice.reducer;

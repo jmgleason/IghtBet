@@ -1,5 +1,15 @@
 class Bet {
-  constructor(id, ownerId, receivingOwnerIds, title, imageUrl, description, wager, expirationDate, statusCd) {
+  constructor(
+    id,
+    ownerId,
+    receivingOwnerIds,
+    title,
+    imageUrl,
+    description,
+    wager,
+    settleDate,
+    statusCd
+  ) {
     this.id = id;
     this.ownerId = ownerId;
     this.receivingOwnerIds = receivingOwnerIds;
@@ -7,7 +17,7 @@ class Bet {
     this.imageUrl = imageUrl;
     this.description = description;
     this.wager = wager;
-    this.expirationDate = expirationDate;
+    this.settleDate = settleDate;
     this.statusCd = statusCd;
   }
 }

@@ -1,4 +1,4 @@
-import Bet from '../models/bet';
+import Bet from "../models/bet";
 
 const BETS = [
   new Bet(
@@ -9,7 +9,7 @@ const BETS = [
     "",
     "I bet the winner of the superbowl will be the Chargers",
     "5000",
-    "2021-03-01",
+    new Date("2021-03-01"),
     1
   ),
   new Bet(
@@ -20,7 +20,7 @@ const BETS = [
     "",
     "I bet I can do more push ups than Brian",
     "2000",
-    "2021-04-10",
+    new Date("2021-04-10"),
     0
   ),
   new Bet(
@@ -31,7 +31,7 @@ const BETS = [
     "",
     "I bet that Michael is gay",
     "1000",
-    "2021-03-21",
+    new Date("2021-03-21"),
     0
   ),
   new Bet(
@@ -42,7 +42,7 @@ const BETS = [
     "",
     "I bet Michael can take more dabs that Apoorv",
     "3500",
-    "2021-03-15",
+    new Date("2021-03-15"),
     0
   ),
   new Bet(
@@ -53,9 +53,9 @@ const BETS = [
     "",
     "I bet I can jump higher than Apoorv and this is also a really long description describing the fact that I can, indeed, jump higher than Apoorv and that's a fact because I am right",
     "10000",
-    "2021-04-03",
+    new Date("2021-04-03"),
     2
-  )
+  ),
 ];
 
- export default BETS;
+export default BETS;
