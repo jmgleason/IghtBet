@@ -14,7 +14,6 @@ const betSlice = createSlice({
     addBet: (state, action) => {
       var newBet = {
         ...action.payload,
-        id: state.allBets.length + 1,
       };
       state.allBets.push(newBet);
     },
@@ -31,9 +30,9 @@ const betSlice = createSlice({
       state.allBets = updatedBets;
     },
     deleteBet: (state, action) => {
-      state.allBets = state.allBets.filter(
-        (bet) => bet.id != action.payload.id
-      );
+      const bets = state.allBets;
+      const updatedBets = bets.filter((bet) => bet.id != action.payload.id);
+      state.allBets = updatedBets;
     },
   },
 });

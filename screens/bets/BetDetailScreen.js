@@ -1,5 +1,5 @@
 import { ScrollView, View, Text, StyleSheet } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Button from "../../components/Button";
 import Colors from "../../constants/Colors";
@@ -11,7 +11,6 @@ const BetDetailScreen = (props) => {
   const bet = useSelector((state) =>
     state.bets.allBets.find((bet) => bet.id == betId)
   );
-  const dispatch = useDispatch();
 
   function onAcceptBetHandler() {}
 
@@ -21,6 +20,10 @@ const BetDetailScreen = (props) => {
     props.navigation.navigate("ManageBet", {
       betId: bet.id,
     });
+  }
+
+  if (!bet) {
+    return <Text>Bet not found. This bet was most likely deleted.</Text>;
   }
 
   return (

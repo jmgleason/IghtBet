@@ -15,7 +15,7 @@ export async function axiosFetchAllBets() {
       statusCd: response.data[key].statusCd,
       ownerId: response.data[key].ownerId,
       receivingOwnerId: response.data[key].receivingOwnerId,
-      settleDate: new Date(response.data[key].settleDate),
+      settleDate: response.data[key].settleDate,
     };
 
     bets.push(betObj);

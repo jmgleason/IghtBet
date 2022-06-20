@@ -47,16 +47,16 @@ function BetForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       description: inputs.description.value.trim(),
       receivingOwnerId: +inputs.receivingOwnerId.value,
       wager: +inputs.wager.value * 100,
-      settleDate: new Date(inputs.settleDate.value),
+      settleDate: new Date(inputs.settleDate.value).toString(),
       ownerId: 1,
-      statusCd: 0,
+      statusCd: defaultValues ? defaultValues.statusCd : 0,
     };
 
     // Validation
     const titleIsValid = betData.title.length > 0;
     const receivingOwnerIdIsValid = betData.receivingOwnerId > 0;
     const wagerIsValid = !isNaN(betData.wager) && betData.wager > 0;
-    const settleDateIsValid = betData.settleDate.toString() !== "Invalid Date";
+    const settleDateIsValid = betData.settleDate !== "Invalid Date";
 
     if (
       !titleIsValid ||
