@@ -48,37 +48,45 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
       <View>
         <Input
           label="Email Address"
-          onUpdateValue={updateInputValueHandler.bind(this, "email")}
-          value={enteredEmail}
           keyboardType="email-address"
-          isInvalid={emailIsInvalid}
+          invalid={emailIsInvalid}
+          textInputConfig={{
+            onChangeText: updateInputValueHandler.bind(this, "email"),
+            value: enteredEmail,
+          }}
         />
         {!isLogin && (
           <Input
             label="Confirm Email Address"
-            onUpdateValue={updateInputValueHandler.bind(this, "confirmEmail")}
-            value={enteredConfirmEmail}
             keyboardType="email-address"
-            isInvalid={emailsDontMatch}
+            invalid={emailsDontMatch}
+            textInputConfig={{
+              onChangeText: updateInputValueHandler.bind(this, "confirmEmail"),
+              value: enteredConfirmEmail,
+            }}
           />
         )}
         <Input
           label="Password"
-          onUpdateValue={updateInputValueHandler.bind(this, "password")}
-          secure
-          value={enteredPassword}
-          isInvalid={passwordIsInvalid}
+          invalid={passwordIsInvalid}
+          textInputConfig={{
+            onChangeText: updateInputValueHandler.bind(this, "password"),
+            value: enteredPassword,
+            secureTextEntry: true,
+          }}
         />
         {!isLogin && (
           <Input
             label="Confirm Password"
-            onUpdateValue={updateInputValueHandler.bind(
-              this,
-              "confirmPassword"
-            )}
-            secure
-            value={enteredConfirmPassword}
-            isInvalid={passwordsDontMatch}
+            invalid={passwordsDontMatch}
+            textInputConfig={{
+              onChangeText: updateInputValueHandler.bind(
+                this,
+                "confirmPassword"
+              ),
+              value: enteredConfirmPassword,
+              secureTextEntry: true,
+            }}
           />
         )}
         <View style={styles.buttons}>

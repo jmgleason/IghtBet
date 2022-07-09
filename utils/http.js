@@ -1,6 +1,22 @@
 import axios from "axios";
 
-FIREBASE_BASE_URL = "https://ight-bet-default-rtdb.firebaseio.com/";
+const FIREBASE_BASE_URL = "https://ight-bet-default-rtdb.firebaseio.com/";
+const API_KEY = "AIzaSyCXlu7NASszrGjAjq2sEpxGeRb6f1g32u8";
+
+// Authorization
+
+export async function createUser(email, password) {
+  const response = await axios.post(
+    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
+    {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    }
+  );
+}
+
+// Bets
 
 export async function axiosFetchAllBets() {
   const response = await axios.get(`${FIREBASE_BASE_URL}bets.json`);
