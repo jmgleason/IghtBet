@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import Bet from "../../models/bet";
-
 const betSlice = createSlice({
   name: "bets",
   initialState: {
