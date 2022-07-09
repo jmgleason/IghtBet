@@ -5,7 +5,7 @@ const API_KEY = "AIzaSyCXlu7NASszrGjAjq2sEpxGeRb6f1g32u8";
 
 // Authorization
 
-async function authenticate(mode, email, password) {
+async function axiosAuthenticate(mode, email, password) {
   const response = await axios.post(
     `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${API_KEY}`,
     {
@@ -15,15 +15,16 @@ async function authenticate(mode, email, password) {
     }
   );
 
-  console.log(response.data);
+  const token = response.data.idToken;
+  return token;
 }
 
-export async function createUser(email, password) {
-  await authenticate("signUp", email, password);
+export async function axiosCreateUser(email, password) {
+  return axiosAuthenticate("signUp", email, password);
 }
 
-export async function login(email, password) {
-  await authenticate("signInWithPassword", email, password);
+export function axiosLogin(email, password) {
+  return axiosAuthenticate("signInWithPassword", email, password);
 }
 
 // Bets
