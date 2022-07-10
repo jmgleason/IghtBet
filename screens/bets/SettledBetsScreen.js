@@ -1,10 +1,14 @@
-import React from 'react';
-import { Text } from 'react-native';
+import React from "react";
+import { useSelector } from "react-redux";
 
-const SettledBetsScreen = props => {
-  return (
-    <Text>This is showing just settled bets</Text>
+import BetsList from "../../components/BetsList";
+
+const SettledBetsScreen = (props) => {
+  const fetchedBets = useSelector((state) =>
+    state.bets.allBets.filter((bet) => bet.ownerId == 1 && bet.statusCd == 4)
   );
+
+  return <BetsList bets={fetchedBets} />;
 };
 
 export default SettledBetsScreen;

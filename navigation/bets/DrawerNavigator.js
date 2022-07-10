@@ -8,7 +8,11 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Bets" component={StackNavigator} />
+      <Drawer.Screen
+        options={{ headerShown: false }}
+        name="Bets"
+        component={StackNavigator}
+      />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
     </Drawer.Navigator>
   );

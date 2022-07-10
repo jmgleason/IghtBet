@@ -9,6 +9,10 @@ const betHelper = {
         return Colors.accepted;
       case 2:
         return Colors.declined;
+      case 3:
+        return Colors.declined;
+      case 4:
+        return Colors.accepted;
       default:
         return Colors.pending;
     }
@@ -23,6 +27,8 @@ const betHelper = {
         return "Declined";
       case 3:
         return "Expired";
+      case 4:
+        return "Settled";
       default:
         return "";
     }
@@ -36,6 +42,8 @@ const betHelper = {
       case 2:
       case 3:
         return "remove";
+      case 4:
+        return "check";
       default:
         return "ellipsis-h";
     }

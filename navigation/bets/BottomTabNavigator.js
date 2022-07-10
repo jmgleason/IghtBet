@@ -22,6 +22,16 @@ function BottomTabNavigator() {
             }}
           />
         ),
+        headerLeft: ({ tintColor }) => (
+          <IconButton
+            iconName="bars"
+            size={24}
+            color={tintColor}
+            onPress={() => {
+              navigation.toggleDrawer();
+            }}
+          />
+        ),
       })}
     >
       <BottomTabs.Screen
