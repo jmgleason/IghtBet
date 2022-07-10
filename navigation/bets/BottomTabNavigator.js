@@ -1,20 +1,14 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Platform } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import Colors from "../constants/Colors";
 
-import AllBetsScreen from "../screens/bets/AllBetsScreen";
-import ActiveBetsScreen from "../screens/bets/ActiveBetsScreen";
-import SettledBetsScreen from "../screens/bets/SettledBetsScreen";
-import BetDetailScreen from "../screens/bets/BetDetailScreen";
-import ManageBetScreen from "../screens/bets/ManageBetScreen";
-import IconButton from "../components/IconButton";
+import AllBetsScreen from "../../screens/bets/AllBetsScreen";
+import ActiveBetsScreen from "../../screens/bets/ActiveBetsScreen";
+import SettledBetsScreen from "../../screens/bets/SettledBetsScreen";
+import IconButton from "../../components/IconButton";
 
-const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
-function BetsOverview() {
+function BottomTabNavigator() {
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
@@ -67,41 +61,4 @@ function BetsOverview() {
   );
 }
 
-function BetsNavigator() {
-  return (
-    <Stack.Navigator
-      initialRouteName="BetsOverview"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: Platform.OS == "android" ? Colors.primary : "",
-        },
-        headerTintColor: Platform.OS == "android" ? "white" : Colors.primary,
-      }}
-    >
-      <Stack.Screen
-        name="BetsOverview"
-        component={BetsOverview}
-        options={{
-          title: "My Bets",
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="BetDetail"
-        component={BetDetailScreen}
-        options={{
-          title: "View Bet",
-        }}
-      />
-      <Stack.Screen
-        name="ManageBet"
-        component={ManageBetScreen}
-        options={{
-          presentation: "modal",
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
-
-export default BetsNavigator;
+export default BottomTabNavigator;
