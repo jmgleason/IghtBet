@@ -59,8 +59,8 @@ function AuthContent({ isLogin, onAuthenticate }) {
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
       />
-      <View style={styles.buttons}>
-        <Button onPress={switchAuthModeHandler}>
+      <View>
+        <Button onPress={switchAuthModeHandler} color="black">
           {isLogin ? "Create a new user" : "Log in instead"}
         </Button>
       </View>
@@ -82,8 +82,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.35,
     shadowRadius: 4,
-  },
-  buttons: {
-    marginTop: 8,
   },
 });
