@@ -13,8 +13,7 @@ function MainNavigation() {
 
   return (
     <NavigationContainer>
-      {!isAuthenticated && <LoginNavigator />}
-      {isAuthenticated && <DrawerNavigator />}
+      {isAuthenticated ? <DrawerNavigator /> : <LoginNavigator />}
     </NavigationContainer>
   );
 }
