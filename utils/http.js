@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from "../store/redux/store";
 
 const FIREBASE_BASE_URL = "https://ight-bet-default-rtdb.firebaseio.com/";
 const API_KEY = "AIzaSyCXlu7NASszrGjAjq2sEpxGeRb6f1g32u8";
@@ -30,7 +31,9 @@ export function axiosLogin(email, password) {
 // Bets
 
 export async function axiosFetchAllBets() {
-  const response = await axios.get(`${FIREBASE_BASE_URL}bets.json`);
+  const response = await axios.get(
+    `${FIREBASE_BASE_URL}bets.json?auth=${store.getState().auth.token}`
+  );
 
   const bets = [];
   for (const key in response.data) {
@@ -52,18 +55,28 @@ export async function axiosFetchAllBets() {
 }
 
 export async function axiosAddBet(betData) {
-  const response = await axios.post(`${FIREBASE_BASE_URL}bets.json`, betData);
+  const response = await axios.post(
+    `${FIREBASE_BASE_URL}bets.json?auth=${store.getState().auth.token}`,
+    betData
+  );
   return response.data.name;
 }
 
 export function axiosUpdateBet(id, betData) {
-  return axios.put(`${FIREBASE_BASE_URL}bets/${id}.json`, betData);
+  return axios.put(
+    `${FIREBASE_BASE_URL}bets/${id}.json?auth=${store.getState().auth.token}`,
+    betData
+  );
 }
 
 export function axiosDeleteBet(id) {
-  return axios.delete(`${FIREBASE_BASE_URL}bets/${id}.json`);
+  return axios.delete(
+    `${FIREBASE_BASE_URL}bets/${id}.json?auth=${store.getState().auth.token}`
+  );
 }
 
 export async function fetchBet(betId) {
-  axios.get(`${FIREBASE_BASE_URL}bets/${betId}`);
+  axios.get(
+    `${FIREBASE_BASE_URL}bets/${betId}?auth=${store.getState().auth.token}`
+  );
 }
