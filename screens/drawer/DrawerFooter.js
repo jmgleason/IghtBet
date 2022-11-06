@@ -9,7 +9,6 @@ const DrawerFooter = (props) => {
   const dispatch = useDispatch();
 
   function signOutHandler() {
-    console.log("Attempting to sign out");
     dispatch(logout());
   }
 

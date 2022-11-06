@@ -19,7 +19,7 @@ function SignupScreen() {
     } catch (error) {
       Alert.alert(
         "Creation Failed",
-        "Could not create user.  Please try again later"
+        "Could not create user.  Please try again later."
       );
       setIsAuthenticating(false);
     }
